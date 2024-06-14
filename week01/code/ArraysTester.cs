@@ -56,7 +56,11 @@ public static class ArraysTester {
     private static void RotateListRight(List<int> data, int amount)
     {
         // take modulus of amount and length of data and assign it to rotation
-        // 
+        // create empty list called rotatedList
+        // add the elements from data starting from data.Count - rotation to the end of the list
+        // add the elements from data starting from 0 to data.Count - rotation
+        // clear the data list
+        // add all the elements from rotatedList to data
         int rotation = amount % data.Count;
         List<int> rotatedList = new List<int>();
         rotatedList.AddRange(data.GetRange(data.Count - rotation, rotation));
