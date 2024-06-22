@@ -8,23 +8,47 @@
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Enqueue Bob (6), Suzy (2), Jim (10) and Dequeue highest priority
+        // Expected Result: Jim
         Console.WriteLine("Test 1");
-
+        var players = new PriorityQueue();
+        players.Enqueue("Bob", 6);
+        players.Enqueue("Suzy", 2);
+        players.Enqueue("Jim", 10);
+        var result = players.Dequeue();
+        Console.WriteLine(result);
         // Defect(s) Found: 
-
+        // Bob is incorrectly dequeued first
         Console.WriteLine("---------");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Empty Queue
+        // Expected Result: Error message
         Console.WriteLine("Test 2");
+        var players2 = new PriorityQueue();
+        var result2 = players2.Dequeue();
+        Console.WriteLine(result2);
 
         // Defect(s) Found: 
+        // No defects found
 
         Console.WriteLine("---------");
 
-        // Add more Test Cases As Needed Below
+        // Test 3
+        // Scenario: Enqueue Bob (10), Suzy (10), Jim (10) and Dequeue highest priority using FIFO
+        // Expected Result: Bob
+        Console.WriteLine("Test 3");
+        var players3 = new PriorityQueue();
+        players3.Enqueue("Bob", 10);
+        players3.Enqueue("Suzy", 10);
+        players3.Enqueue("Jim", 10);
+        var result3 = players3.Dequeue();
+        Console.WriteLine(result3);
+
+        // Defect(s) Found: 
+        // Bob is incorrectly dequeued first
+
+        Console.WriteLine("---------");
+
     }
 }

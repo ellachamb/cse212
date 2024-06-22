@@ -16,6 +16,7 @@
         while (players.Length > 0)
             players.GetNextPerson();
         // Defect(s) Found: 
+        // It does not circle through the queue properly. It should go back to the first person after the last person.
 
         Console.WriteLine("---------");
 
@@ -39,6 +40,7 @@
             players.GetNextPerson();
 
         // Defect(s) Found: 
+        // It does not circle through and George is not added at the right time. 
 
         Console.WriteLine("---------");
 
@@ -57,6 +59,7 @@
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
+        // Tim should have an infinite amount of turns and it doesn't go back and forth between them.
 
         Console.WriteLine("---------");
 
@@ -74,6 +77,7 @@
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
+        // Tim should have an infinite amount of turns and it doesn't go back and forth between them. 
 
         Console.WriteLine("---------");
 
@@ -84,5 +88,6 @@
         players = new TakingTurnsQueue();
         players.GetNextPerson();
         // Defect(s) Found:
+        // It should display an error message when trying to get the next person from an empty queue.
     }
 }
