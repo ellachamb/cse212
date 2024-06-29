@@ -29,7 +29,19 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveLeft() {
-        // FILL IN CODE
+        int newX = _currX - 1;
+        int newY = _currY;
+
+        if (_mazeMap.ContainsKey((newX, newY)) && _mazeMap[(newX, newY)][0]) // Check if movement to the left is valid
+        {
+            _currX = newX;
+            _currY = newY;
+            Console.WriteLine($"Moved left to (x={_currX}, y={_currY})");
+        }
+        else
+        {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -37,7 +49,19 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveRight() {
-        // FILL IN CODE
+        int newX = _currX + 1;
+        int newY = _currY;
+
+        if (_mazeMap.ContainsKey((newX, newY)) && _mazeMap[(newX, newY)][1]) // Check if movement to the right is valid
+        {
+            _currX = newX;
+            _currY = newY;
+            Console.WriteLine($"Moved right to (x={_currX}, y={_currY})");
+        }
+        else
+        {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -45,7 +69,19 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveUp() {
-        // FILL IN CODE
+        int newX = _currX;
+        int newY = _currY - 1;
+
+        if (_mazeMap.ContainsKey((newX, newY)) && _mazeMap[(newX, newY)][2]) // Check if movement upwards is valid
+        {
+            _currX = newX;
+            _currY = newY;
+            Console.WriteLine($"Moved up to (x={_currX}, y={_currY})");
+        }
+        else
+        {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -53,7 +89,19 @@ public class Maze {
     /// can't move, then display "Can't go that way!"
     /// </summary>
     public void MoveDown() {
-        // FILL IN CODE
+        int newX = _currX;
+        int newY = _currY + 1;
+
+        if (_mazeMap.ContainsKey((newX, newY)) && _mazeMap[(newX, newY)][3]) // Check if movement downwards is valid
+        {
+            _currX = newX;
+            _currY = newY;
+            Console.WriteLine($"Moved down to (x={_currX}, y={_currY})");
+        }
+        else
+        {
+            Console.WriteLine("Can't go that way!");
+        }
     }
 
     public void ShowStatus() {

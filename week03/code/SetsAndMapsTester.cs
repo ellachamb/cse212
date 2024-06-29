@@ -111,6 +111,20 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+        HashSet<string> seen = new HashSet<string>();
+
+        foreach (string word in words)
+        {
+            string reversedWord = new string(new char[] { word[1], word[0] });
+            if (seen.Contains(reversedWord))
+            {
+                Console.WriteLine($"{reversedWord} & {word}");
+            }
+            else
+            {
+                seen.Add(word);
+            }
+        }
     }
 
     /// <summary>
@@ -131,7 +145,18 @@ public static class SetsAndMapsTester {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
+            if (fields.Length >= 4) 
+            {
+                string degree = fields[3].Trim(); 
+                if (degrees.ContainsKey(degree))
+                {
+                    degrees[degree]++;
+                }
+                else
+                {
+                    degrees[degree] = 1;
+                }
+            }
         }
 
         return degrees;
@@ -157,8 +182,61 @@ public static class SetsAndMapsTester {
     /// # Problem 3 #
     /// #############
     private static bool IsAnagram(string word1, string word2) {
-        // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        word1 = word1.ToLower().Replace(" ", "");
+        word2 = word2.ToLower().Replace(" ", "");
+
+        if (word1.Length != word2.Length)
+        {
+            return false;
+        }
+
+        Dictionary<char, int> charCount1 = new Dictionary<char, int>();
+        Dictionary<char, int> charCount2 = new Dictionary<char, int>();
+
+        foreach (char c in word1)
+        {
+            if (charCount1.ContainsKey(c))
+            {
+                charCount1[c]++;
+            }
+            else
+            {
+                charCount1[c] = 1;
+            }
+        }
+
+        foreach (char c in word2)
+        {
+            if (charCount2.ContainsKey(c))
+            {
+                charCount2[c]++;
+            }
+            else
+            {
+                charCount2[c] = 1;
+            }
+        }
+
+        foreach (var kvp in charCount1)
+        {
+            char c = kvp.Key;
+            int count1 = kvp.Value;
+            int count2 = 0;
+
+            if (charCount2.TryGetValue(c, out count2))
+            {
+                if (count1 != count2)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
