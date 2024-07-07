@@ -27,7 +27,18 @@ public class LinkedList : IEnumerable<int> {
     /// Insert a new node at the back (i.e. the tail) of the linked list.
     /// </summary>
     public void InsertTail(int value) {
-        // TODO Problem 1
+        Node newNode = new Node(value); 
+        // If the list is empty, then point both head and tail to the new node.
+        if (_head is null) {
+            _head = newNode;
+            _tail = newNode;
+        }
+        // If the list is not empty, then only tail will be affected.
+        else {
+            newNode.Prev = _tail; // Connect new node to the previous tail
+            _tail.Next = newNode; // Connect the previous tail to the new node
+            _tail = newNode; // Update the tail to point to the new node
+        }
     }
 
 
@@ -55,7 +66,16 @@ public class LinkedList : IEnumerable<int> {
     /// Remove the last node (i.e. the tail) of the linked list.
     /// </summary>
     public void RemoveTail() {
-        // TODO Problem 2
+        // If the list has only one item in it, then set head and tail
+        if (_head == _tail) {
+            _head = null;
+            _tail = null;
+        }
+        // If the list has more than one item in it, then only the tail will be affected.
+        else if (_tail is not null) {
+            _tail.Prev!.Next = null; // Disconnect the second to last node from the last node
+            _tail = _tail.Prev; // Update the tail to point to the second to last node
+        }
     }
 
     /// <summary>
@@ -93,14 +113,44 @@ public class LinkedList : IEnumerable<int> {
     /// Remove the first node that contains 'value'.
     /// </summary>
     public void Remove(int value) {
-        // TODO Problem 3
+        Node? current = _head; 
+
+        while (current is not null) {
+            if (current.Data == value) {
+                // If the node is the head, then call remove_head to remove it.
+                if (current == _head) {
+                    RemoveHead();
+                }
+                // If the node is the tail, then call remove_tail to remove it.
+                else if (current == _tail) {
+                    RemoveTail();
+                }
+                // For any other node, need to reconnect the links to remove.
+                else {
+                    current.Prev!.Next = current.Next;
+                    current.Next!.Prev = current.Prev;
+                }
+
+                return;
+            }
+
+            current = current.Next; // Go to the next node to search for 'value'
+        }
     }
 
     /// <summary>
     /// Search for all instances of 'oldValue' and replace the value to 'newValue'.
     /// </summary>
     public void Replace(int oldValue, int newValue) {
-        // TODO Problem 4
+        Node? current = _head; 
+
+        while (current is not null) {
+            if (current.Data == oldValue) {
+                current.Data = newValue; // Replace the value of the node
+            }
+
+            current = current.Next; // Go to the next node to search for 'oldValue'
+        }
     }
 
     /// <summary>
