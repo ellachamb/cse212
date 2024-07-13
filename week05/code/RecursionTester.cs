@@ -146,8 +146,11 @@ public static class RecursionTester {
     /// n &lt;= 0, just return 0.   A loop should not be used.
     /// </summary>
     public static int SumSquaresRecursive(int n) {
-        // TODO Start Problem 1
+        // if n is less than or equal to 0, return 0
+        if (n <= 0) {
         return 0;
+        }
+        return n * n + SumSquaresRecursive(n - 1);
     }
 
     /// <summary>
@@ -170,7 +173,14 @@ public static class RecursionTester {
     /// and the length of the letters list).
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
-        // TODO Start Problem 2
+        if (word.Length == size) {
+            Console.WriteLine(word);
+            return;
+        }
+
+        for (int i = 0; i < letters.Length; i++) {
+            PermutationsChoose(letters.Remove(i, 1), size, word + letters[i]);
+        }
     }
 
     /// <summary>
@@ -248,7 +258,13 @@ public static class RecursionTester {
     /// some of the string functions like IndexOf and [..X] / [X..] to be useful in solving this problem.
     /// </summary>
     public static void WildcardBinary(string pattern) {
-        // TODO Start Problem 4
+        int index = pattern.IndexOf('*');
+        if (index == -1) {
+            Console.WriteLine(pattern);
+            return;
+        }
+        WildcardBinary(pattern[..index] + "0" + pattern[(index + 1)..]);
+        WildcardBinary(pattern[..index] + "1" + pattern[(index + 1)..]);
     }
 
     /// <summary>
